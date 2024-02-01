@@ -1,21 +1,17 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from denuncia.models import Denuncia
+from rest_framework import generics 
+from .models import Denuncia
 from .serializers import DenunciaSerializer
 
-@api_view(['GET'])
-def getDenuncia(request):
-    denuncias = Denuncia.objects.all()
-    serializer = DenunciaSerializer(denuncias, many = True)
-    return Response(serializer.data)
+#Cria uma denuncia, ou pega a lista de denuncias
+class DenunciaCreateListView(generics.ListCreateAPIView):
+    queryset = Denuncia.objects.all()
+    serializer_class = DenunciaSerializer
 
-@api_view(['POST'])
-
-def addDenuncia(request):
-    serializer = DenunciaSerializer(data = request.data)
-    if serializer.is_valid():
-        serializer.save()
-    return Response(serializer.data)
-
+#Pega o id da denuncia e retorna os dados da denuncia
+class DenunciaRetrieveView(generics.RetrieveAPIView):
+    queryset = Denuncia.objects.all()
+    serializer_class = DenunciaSerializer
 
 
