@@ -20,7 +20,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('api.urls'))
+    path('', include('denuncia.urls'))
 ]
 
 urlpatterns += staticfiles_urlpatterns()
