@@ -129,7 +129,7 @@ STATIC_URL = 'static/'
 MEDIA_URL = 'media/'
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000'
+    'http://localhost:3000',
     'https://tryingdeploy.vercel.app/'
 ]
 
