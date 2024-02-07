@@ -20,6 +20,6 @@ class Denuncia(models.Model):
     
     v_domestica = models.CharField(max_length = 10, choices=CHOICES)
     telefone_1 = models.CharField(max_length = 15, blank=True, null=True)
-    telefone_1 = models.CharField(max_length = 15, blank=True, null=True)
+    telefone_2 = models.CharField(max_length = 15, blank=True, null=True)
 
     data_denuncia = models.DateTimeField(auto_now_add=True)
