@@ -23,6 +23,7 @@ urlpatterns = [
     
     path('api/v1/', include('authentication.urls')),
     path('api/v1/', include('denuncia.urls')),
+    path('api/v1/', include('verification.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
