@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'denuncia',
     'verification',
     'medida_tomada',
+    'responsaveis',
 ]
 
 MIDDLEWARE = [
