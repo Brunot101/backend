@@ -134,7 +134,7 @@ MEDIA_URL = 'media/'
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     'https://tryingdeploy.vercel.app',
-    'https://pds-2023-2-two.vercel.app/'
+    'https://pds-2023-2-two.vercel.app'
 ]
 
 # Default primary key field type
