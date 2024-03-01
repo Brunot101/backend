@@ -28,7 +28,7 @@ class VerificationCreateView(generics.CreateAPIView):
 
         message = client.messages \
                         .create(
-                            body="O seu código de verificação é: " + codigo,
+                            body="O seu codigo de verificacao é: " + codigo,
                             from_='+17867667555',
                             to= '+55' + telefone
                         )
