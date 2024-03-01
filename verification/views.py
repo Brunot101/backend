@@ -22,15 +22,15 @@ class VerificationCreateView(generics.CreateAPIView):
         telefone = self.request.data.get('telefone')
         codigo = self.generate_15_digit_code()
 
-        account_sid = os.environ['AC2f329b7f7d8279ad2e2707ffd0942174']
-        auth_token = os.environ['120865e5402293bbadf6525a832088b7']
+        account_sid ='AC2f329b7f7d8279ad2e2707ffd0942174'
+        auth_token = 'a27b8995b3bf305129451457f5df5259'
         client = Client(account_sid, auth_token)
 
         message = client.messages \
                         .create(
                             body="O seu código de verificação é: " + codigo,
                             from_='+17867667555',
-                            to= "+55" + telefone
+                            to= '+55' + telefone
                         )
 
         serializer.save(telefone=telefone, codigo=codigo)
