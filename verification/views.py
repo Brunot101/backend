@@ -15,7 +15,7 @@ class VerificationCreateView(generics.CreateAPIView):
     def generate_15_digit_code(self):
         
         import random
-        return ''.join(random.choices('0123456789', k=15))
+        return ''.join(random.choices('123456789', k=15))
 
     def perform_create(self, serializer):
         
