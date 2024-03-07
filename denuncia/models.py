@@ -1,5 +1,5 @@
 from django.db import models
-
+pontuacoes = {'v_fisica': 0.4, 'v_verbal': 0.1, 'bullying': 0.2, 'assedio': 0.6, 'v_domestica': 0.7}
 
 CHOICES = (
         ('yes', 'Sim'),
@@ -23,3 +23,30 @@ class Denuncia(models.Model):
     telefone_2 = models.CharField(max_length = 15, blank=True, null=True)
 
     data_denuncia = models.DateTimeField(auto_now_add=True)
+    pontuacao = models.FloatField(default=0.0)
+    def save(self, *args, **kwargs):
+            
+            pontuacao = 0.0
+
+            campos_para_pontuar = [
+                self.v_fisica,
+                self.v_verbal,
+                self.bullying,
+                self.assedio,
+                self.v_domestica,
+                
+            ]
+
+            if(self.v_fisica == 'yes'):
+                pontuacao += pontuacoes['v_fisica']
+            if(self.v_verbal == 'yes'):
+                pontuacao += pontuacoes['v_verbal']
+            if(self.bullying == 'yes'):
+                pontuacao += pontuacoes['bullying']
+            if(self.assedio == 'yes'):
+                pontuacao += pontuacoes['assedio']   
+            if(self.v_domestica == 'yes'):
+                pontuacao += pontuacoes['v_domestica']         
+            self.pontuacao = round(pontuacao,2)
+
+            super(Denuncia, self).save(*args, **kwargs)
