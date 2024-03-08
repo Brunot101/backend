@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 pontuacoes = {'v_fisica': 0.4, 'v_verbal': 0.1, 'bullying': 0.2, 'assedio': 0.6, 'v_domestica': 0.7}
 
@@ -6,6 +7,9 @@ CHOICES = (
         ('no', 'Não'),
     )
 
+
+def upload_file_formater(instance, filename):
+    return f"{str(uuid.uuid4())}--{filename}"
 class Denuncia(models.Model):
     
     matricula = models.IntegerField()    
@@ -21,6 +25,10 @@ class Denuncia(models.Model):
     v_domestica = models.CharField(max_length = 10, choices=CHOICES)
     telefone_1 = models.CharField(max_length = 15, blank=True, null=True)
     telefone_2 = models.CharField(max_length = 15, blank=True, null=True)
+
+    arquivo_1 = models.FileField(upload_to=upload_file_formater, null=True, blank=True)
+    arquivo_2 = models.FileField(upload_to=upload_file_formater, null=True, blank=True)
+    arquivo_3 = models.FileField(upload_to=upload_file_formater, null=True, blank=True)
 
     data_denuncia = models.DateTimeField(auto_now_add=True)
     pontuacao = models.FloatField(default=0.0)

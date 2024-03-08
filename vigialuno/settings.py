@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'verification',
     'medida_tomada',
     'responsaveis',
+    'django.contrib.postgres',
+    
 ]
 
 MIDDLEWARE = [
@@ -92,6 +94,9 @@ DATABASES = {
     'default': dj_database_url.parse('postgres://database_490f_user:5zPB5qP6qQ1IbCODeySwfeAUMcu3M8Lk@dpg-cmqkn62cn0vc73dopuig-a.oregon-postgres.render.com/database_490f')
     
 }
+DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+
+
 
 
 # Password validation
@@ -129,7 +134,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
-MEDIA_URL = 'media/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
