@@ -27,6 +27,7 @@ urlpatterns = [
     path('api/v1/', include('verification.urls')),
     path('api/v1/', include('responsaveis.urls')),
     path('api/v1/', include('medida_tomada.urls')),
+    path('api/v1/', include('alunos.urls')),
     
 ]+static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 
