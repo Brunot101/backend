@@ -10,7 +10,7 @@ class ResponsavelProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ResponsavelProfile
-        fields = ['username', 'first_name', 'last_name', 'email', 'profissao', 'endereco', 'telefone', 'dependentes']
+        fields = ['id', 'username', 'first_name', 'last_name', 'email', 'profissao', 'endereco', 'telefone', 'dependentes']
 
 class UserAndProfileSerializer(serializers.Serializer):
     username = serializers.CharField()
@@ -24,11 +24,6 @@ class UserAndProfileSerializer(serializers.Serializer):
     telefone = serializers.CharField()
 
     def create(self, validated_data):
-        profile_data = {
-            'profissao': validated_data.pop('profissao'),
-            'endereco': validated_data.pop('endereco'),
-            'telefone': validated_data.pop('telefone')
-        }
         user = User.objects.create_user(
             username=validated_data['username'],
             first_name=validated_data['first_name'],
@@ -36,6 +31,12 @@ class UserAndProfileSerializer(serializers.Serializer):
             email=validated_data['email'],
             password=validated_data['password']
         )
+        profile_data = {
+            'id': user.id,
+            'profissao': validated_data.pop('profissao'),
+            'endereco': validated_data.pop('endereco'),
+            'telefone': validated_data.pop('telefone')
+        }
         ResponsavelProfile.objects.create(user=user, **profile_data)
         
         return {
