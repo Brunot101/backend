@@ -5,7 +5,7 @@ from .models import ResponsavelProfile
 class ResponsavelProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = ResponsavelProfile
-        fields = ['profissao', 'endereco', 'telefone']
+        fields = ['profissao', 'endereco', 'telefone', 'dependentes']
 
 class UserAndProfileSerializer(serializers.Serializer):
     username = serializers.CharField()
