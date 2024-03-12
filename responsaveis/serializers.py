@@ -3,9 +3,14 @@ from rest_framework import serializers
 from .models import ResponsavelProfile
 
 class ResponsavelProfileSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(source='user.username', read_only=True)
+    first_name = serializers.CharField(source='user.first_name', read_only=True)
+    last_name = serializers.CharField(source='user.last_name', read_only=True)
+    email = serializers.EmailField(source='user.email', read_only=True)
+
     class Meta:
         model = ResponsavelProfile
-        fields = ['profissao', 'endereco', 'telefone', 'dependentes']
+        fields = ['username', 'first_name', 'last_name', 'email', 'profissao', 'endereco', 'telefone', 'dependentes']
 
 class UserAndProfileSerializer(serializers.Serializer):
     username = serializers.CharField()
