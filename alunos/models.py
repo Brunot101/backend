@@ -13,7 +13,7 @@ class Aluno(models.Model):
     cpf = models.CharField(max_length=14)
     data_nascimento = models.DateTimeField()
     turma_ano = models.CharField(max_length=100)
-    historico_academico = models.FileField(upload_to='alunos/historicos', validators=[FileExtensionValidator(allowed_extensions=['pdf'])])
+    historico_academico = models.FileField(blank=True, upload_to='alunos/historicos', validators=[FileExtensionValidator(allowed_extensions=['pdf'])])
     historico_faltas = models.IntegerField(default=0)
     observacoes = models.TextField(blank=True)
     contato_substancias_ilicitas = models.CharField(max_length = 10, choices=CHOICES)
