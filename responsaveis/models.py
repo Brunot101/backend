@@ -13,3 +13,11 @@ class ResponsavelProfile(models.Model):
 
     def __str__(self):
         return f'{self.user.first_name} {self.user.last_name}'
+    
+
+class Token(models.Model):
+    token = models.CharField(max_length=100, unique=True)
+    is_valid = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.token

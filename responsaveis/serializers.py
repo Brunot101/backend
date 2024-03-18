@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from .models import ResponsavelProfile
+from .models import Token
 
 class ResponsavelProfileSerializer(serializers.ModelSerializer):
     username = serializers.CharField(source='user.username', read_only=True)
@@ -49,3 +50,8 @@ class UserAndProfileSerializer(serializers.Serializer):
                 'endereco': profile_data['endereco'],
                 'telefone': profile_data['telefone']
         }
+    
+class TokenSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Token
+        fields = ['token']
