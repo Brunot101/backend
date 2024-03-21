@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'medida_tomada',
     'responsaveis',
     'alunos',
+    'notification',
     'django.contrib.postgres',
     
 ]

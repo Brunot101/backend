@@ -17,6 +17,6 @@ class DenunciaListView(generics.ListAPIView):
 
 #Pega o id da denuncia e retorna os dados da denuncia, precisa de autenticação e ser admin
 class DenunciaRetrieveView(generics.RetrieveAPIView):
-    permission_classes = (IsAdminUser,)
+    permission_classes = (IsAuthenticated,)
     queryset = Denuncia.objects.all()
     serializer_class = DenunciaSerializer
