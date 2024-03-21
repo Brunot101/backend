@@ -6,6 +6,6 @@ from .views import MedidaTomadaRetrieveView
 from .views import MedidaTomadaUpdateView
 urlpatterns = [
     path('medida', MedidaTomadaCreateView.as_view(), name='medida'),
-    path('medidas/<int:pk>/', MedidaTomadaRetrieveView.as_view(), name='medida-detail-view'),
+    path('medida/<int:pk>/', MedidaTomadaRetrieveView.as_view(), name='medida-detail-view'),
      path('medida/update/<int:pk>/', MedidaTomadaUpdateView.as_view(), name='medida-update-view'),
 ]
