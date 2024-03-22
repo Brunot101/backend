@@ -24,7 +24,7 @@ class AlunoRetrieveView(generics.RetrieveAPIView):
     serializer_class = AlunoSerializer
 
 class AlunoUpdateView(generics.UpdateAPIView):
-    permission_classes = (IsAdminUser,)
+    permission_classes = (IsAuthenticated,)
     queryset = Aluno.objects.all()
     serializer_class = AlunoSerializer
 

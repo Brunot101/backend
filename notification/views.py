@@ -5,7 +5,7 @@ from .models import Notification
 from .serializers import NotificationSerializer
 from rest_framework import generics
 
-class UserNotificationListAPIView(generics.ListAPIView):
+class UserNotificationListView(generics.ListAPIView):
     permission_classes = (IsAuthenticated,)
     serializer_class = NotificationSerializer
 
@@ -21,3 +21,8 @@ class UserNotificationListAPIView(generics.ListAPIView):
         queryset = Notification.objects.filter(user=user)
 
         return queryset
+    
+class UserNotificationUpdateView(generics.UpdateAPIView):
+    permission_classes = (IsAuthenticated,)
+    queryset = Notification.objects.all()
+    serializer_class = NotificationSerializer
