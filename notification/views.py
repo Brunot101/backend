@@ -3,7 +3,9 @@ from django.shortcuts import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 from .models import Notification
 from .serializers import NotificationSerializer
-from rest_framework import generics
+from rest_framework import generics, status
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 class UserNotificationListView(generics.ListAPIView):
     permission_classes = (IsAuthenticated,)
@@ -22,7 +24,13 @@ class UserNotificationListView(generics.ListAPIView):
 
         return queryset
     
-class UserNotificationUpdateView(generics.UpdateAPIView):
-    permission_classes = (IsAuthenticated,)
-    queryset = Notification.objects.all()
-    serializer_class = NotificationSerializer
+class UserNotificationUpdateSeenView(APIView):
+    def post(self, request):
+        id_value = request.data.get('id')
+        try:
+            notification = Notification.objects.get(id=id_value)
+            notification.is_read = True
+            notification.save()
+            return Response(status=status.HTTP_200_OK)
+        except Notification.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
