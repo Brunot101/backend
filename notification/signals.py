@@ -19,7 +19,7 @@ def create_notification_on_medidatomada_creation(sender, instance, created, **kw
         users = User.objects.filter(id__in=responsaveis)
         # Crie uma notificação para cada responsável
         for user in users:
-            message = f'Nova medida tomada criada para a denúncia "{denuncia.titulo}": {instance.acao}'
+            message = f'Nova medida tomada para a denúncia "{denuncia.titulo}": {instance.acao}'
             Notification.objects.create(user=user, medida_tomada=instance, message=message)
 
 @receiver(m2m_changed, sender=Denuncia.vitimas.through)

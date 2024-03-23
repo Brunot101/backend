@@ -26,4 +26,16 @@ class DenunciaUpdateView(generics.UpdateAPIView):
     permission_classes = (IsAuthenticated,)
     queryset = Denuncia.objects.all()
     serializer_class = DenunciaSerializer
-    
+
+#Lista todas as denuncias que os dependentes do usuario estão envolvidos, precisa de autenticação
+class DenunciaDependentesListView(generics.ListAPIView):
+    permission_classes = (IsAuthenticated,)
+    serializer_class = DenunciaSerializer
+
+    def get_queryset(self):
+        # Obtenha todos os alunos associados ao usuário atual
+        alunos = self.request.user.responsavelprofile.dependentes.all()
+
+        # Obtenha todas as denúncias associadas aos dependentes como vítimas ou praticantes
+        queryset = Denuncia.objects.filter(vitimas__in=alunos) | Denuncia.objects.filter(praticantes__in=alunos)
+        return queryset.distinct()
