@@ -20,3 +20,10 @@ class DenunciaRetrieveView(generics.RetrieveAPIView):
     permission_classes = (IsAuthenticated,)
     queryset = Denuncia.objects.all()
     serializer_class = DenunciaSerializer
+
+#Atualiza a denuncia, precisa de autenticação
+class DenunciaUpdateView(generics.UpdateAPIView):
+    permission_classes = (IsAuthenticated,)
+    queryset = Denuncia.objects.all()
+    serializer_class = DenunciaSerializer
+    

@@ -1,5 +1,6 @@
 import uuid
 from django.db import models
+from alunos.models import Aluno
 pontuacoes = {'v_fisica': 0.4, 'v_verbal': 0.1, 'bullying': 0.2, 'assedio': 0.6, 'v_domestica': 0.7}
 
 CHOICES = (
@@ -12,6 +13,10 @@ def upload_file_formater(instance, filename):
     return f"{str(uuid.uuid4())}--{filename}"
 class Denuncia(models.Model):
     
+    titulo = models.CharField(max_length = 100, blank=True)
+    praticantes = models.ManyToManyField(Aluno, related_name='denuncia_praticante', blank=True)
+    vitimas = models.ManyToManyField(Aluno, related_name='denuncia_vitima', blank=True)
+
     matricula = models.IntegerField()    
     relato = models.CharField(max_length = 500)
     lugar = models.CharField(max_length = 50)
