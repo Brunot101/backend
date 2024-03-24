@@ -9,6 +9,7 @@ urlpatterns = [
     path('responsavel/associate/<int:pk>/', views.AssociateDependenteView.as_view(), name='responsavel-associate-dependente-view'),
     path('responsavel/token', views.TokenGenerationView.as_view(), name='responsavel-token'),
     path('responsavel/token/validate', views.TokenValidationView.as_view(), name='responsavel-token-validate'),
+    
 ]
 
 urlpatterns += staticfiles_urlpatterns()
