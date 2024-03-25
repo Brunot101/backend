@@ -3,7 +3,7 @@ from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from .models import Denuncia
 from .serializers import DenunciaSerializer
-from rest_framework.response import Response
+import Response from django
 
 #Cria uma denuncia, não precisa de autenticação
 class DenunciaCreateView(generics.CreateAPIView):
@@ -28,20 +28,18 @@ class DenunciaUpdateView(generics.UpdateAPIView):
     queryset = Denuncia.objects.all()
     serializer_class = DenunciaSerializer
 
-    def patch(self, request, *args, **kwargs):
-        partial = True  # Definindo como atualização parcial
+    def partial_update(self, request, *args, **kwargs):
         instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer = self.get_serializer(instance, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
-
-        # Para evitar a validação dos campos obrigatórios durante atualizações parciais,
-        # removemos os campos obrigatórios dos dados recebidos.
-        for field in serializer.fields:
-            if field in request.data:
-                serializer.fields[field].required = False
+        
+        
+        status = request.data.get('status')
+        if status is not None:
+            instance.status = status
         
         self.perform_update(serializer)
-        return Response(serializer.data)  
+        return Response(serializer.data)   
 
 #Lista todas as denuncias que os dependentes do usuario estão envolvidos, precisa de autenticação
 class DenunciaDependentesListView(generics.ListAPIView):
