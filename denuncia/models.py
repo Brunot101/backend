@@ -37,6 +37,7 @@ class Denuncia(models.Model):
 
     data_denuncia = models.DateTimeField(auto_now_add=True)
     pontuacao = models.FloatField(default=0.0)
+    status = models.CharField(max_length = 40, default='nao investigado')
     def save(self, *args, **kwargs):
             
             pontuacao = 0.0
