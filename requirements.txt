@@ -6,3 +6,4 @@ psycopg2-binary
 dj-database-url
 gunicorn
 twilio
+django-rest-passwordreset
