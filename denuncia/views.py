@@ -3,7 +3,7 @@ from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from .models import Denuncia
 from .serializers import DenunciaSerializer
-import Response from django
+from rest_framework.response import Response
 
 #Cria uma denuncia, não precisa de autenticação
 class DenunciaCreateView(generics.CreateAPIView):
