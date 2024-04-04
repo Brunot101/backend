@@ -23,7 +23,7 @@ class VerificationCreateView(generics.CreateAPIView):
         codigo = self.generate_15_digit_code()
 
         account_sid ='AC2f329b7f7d8279ad2e2707ffd0942174'
-        auth_token = 'a27b8995b3bf305129451457f5df5259'
+        auth_token = '753403e711694fe8b42b714cc46c5ea6'
         client = Client(account_sid, auth_token)
 
         message = client.messages \
